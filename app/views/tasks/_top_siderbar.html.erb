@@ -1,0 +1,44 @@
+<div class="navbar span10">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li 
+      	<%if request.url.include? "task" %>
+      		class="active"
+      	<%end%>
+      	><a href="<%= tasks_path%>">Tasks</a>
+      </li>
+      <li 
+      	<%if request.url.include? "direction" and !request.url.include? "task" %>
+      		class="active"
+      	<%end%>
+      	><a href="<%= directions_path%>">Directions</a>
+      </li>
+      <li 
+        <%if request.url.include? "schedule" %>
+          class="active"
+        <%end%>
+        ><a href="<%= schedules_path%>">Schedules</a>
+      </li>
+      <li 
+        <%if request.url.include? "note" %>
+          class="active"
+        <%end%>
+        ><a href="<%= notes_path%>">Notes</a>
+      </li>
+    </ul>
+    <ul class="nav pull-right">
+      <li>
+        <% if user_signed_in? %>
+        <a href="<%= edit_user_registration_path%>"> Signed in as <strong><%= current_user.email %></strong></a>
+      </li>
+      <li>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

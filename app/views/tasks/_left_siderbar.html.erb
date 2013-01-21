@@ -1,0 +1,16 @@
+<div class="span2">
+	<ul class="nav nav-tabs nav-stacked">
+	  <% @directions.each do |dir| %>
+	      <li <%if direction_tasks_url(dir) ==request.url %>class="active" <%end%>>
+	      	<a href="<%= direction_tasks_path(dir)%>">
+	      		<i class="<%= dir.icon %> transparent"></i>
+	      		<%= dir.name%>
+	      		
+	      		<% if dir.tasks.today_done.size >= dir.count_limit or dir.tasks.not_done.size == 0%>
+	      			<i class=" icon-ok-sign pull-right icon-white"></i>
+	      		<%end%>
+	      </a>
+	      </li>
+	  <%end%>
+	</ul>
+</div>

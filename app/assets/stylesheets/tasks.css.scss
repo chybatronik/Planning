@@ -1,0 +1,21 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.transparent{
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.disable{
+	text-decoration:line-through;
+}
+
+.display_none{
+	display:none!important;
+}
+
+i{
+	color:#333;
+}

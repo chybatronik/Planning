@@ -1,0 +1,7 @@
+ <%= form_tag direction_tasks_path, method: :post, remote:false,:class => 'form-search'  do%>
+ 	<div class="input-append">
+ 	<%= text_field_tag 'task[name]',  '', :class => 'input-medium search-query span5', :id=>"add_text_field"%>
+ 	<%= collection_select(:task, :direction_id, Direction.all, :id, :name,{}, {:class=>"display_none"}) %>
+ 	<%= submit_tag "Add", :class => 'btn'%>
+ </div>
+ <%end%>

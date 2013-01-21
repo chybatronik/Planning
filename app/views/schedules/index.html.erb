@@ -1,0 +1,35 @@
+
+
+<%= render :partial => 'tasks/top_siderbar' %>
+<div class="row">
+  <div class="span10 offset2">
+      <blockquote><small>Today you should do <%= @schedules.size%> tasks. And <%= @schedules_today_done.size%> are done. </small></blockquote>
+  </div>
+</div>
+
+<div class="span10">
+  <table class="table table-striped">
+    <tbody>
+      <% @schedules.each do |schedule| %>
+        <%unless schedule.task.isDone%>
+          <tr>
+            <td width=5%>
+                <%= form_tag done_schedule_path(schedule), method: :get, remote:false do%>
+                  <%= check_box_tag nil, nil, schedule.task.isDone %>
+                  <%= submit_tag %>
+                <% end %>
+            </td>
+            <td>
+              <a href="<%= direction_tasks_path(schedule.task.direction)%>">
+                <i class="<%= schedule.task.direction.icon %> transparent"></i>
+                <%= schedule.task.direction.name %>
+              </a>
+            </td>
+            <td><%= schedule.task.name %></td>          
+            <td><%= schedule.task.created_at %></td>
+          </tr>
+        <%end%>
+      <% end %>
+    </tbody>
+  </table>
+</div>

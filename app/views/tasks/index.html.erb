@@ -1,0 +1,127 @@
+<%= render :partial => 'top_siderbar' %> 
+<%= render :partial => 'alert' %>
+<%= render :partial => 'left_siderbar' %>
+
+<div class="span6">
+  <% if @today_tasks_add_complete%>
+    <%= render :partial => 'form_add_inline' %>
+  <%end%>
+
+  <%if @cur_direction != nil and @cur_direction.desc != nil%>
+
+    <div style="text-align:left">
+      <small>
+        <%= markdown(@cur_direction.desc) %>
+      </small>
+      <div style="text-align:right">
+      <%= link_to edit_direction_path(@cur_direction), :class => 'btn btn-mini' do%>
+        <i class="icon-edit"></i>
+      <%end%>
+      </div>
+      
+    </div>
+
+  <%end%>
+
+  <table class="table table-striped span8">
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <% if @today_tasks_complete%>
+            <td width=5%>
+              <%= form_tag done_task_path(task), method: :get, remote:false do%>
+                <%= check_box_tag nil, nil, task.isDone %>
+                <%= submit_tag %>
+              <% end %>
+            </td>
+          <%end%>
+          <td>
+            <%= markdown(task.name) %>
+            <%if task.desc != nil%>
+              <div class="transparent">
+                <small>
+                  <%= markdown(task.desc) %>
+                </small>
+              </div>
+            <%end%>
+          </td>
+          
+          <td width=10%>
+            <%= link_to edit_task_path(task), :class => 'btn btn-mini' do%>
+              <i class="icon-edit"></i>
+            <%end%>
+            <%= link_to task_path(task),
+                        :method => :delete,
+                        :class => 'btn btn-mini' do%>
+                          <i class="icon-remove"></i>
+            <%end%>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <blockquote><small>Today tasks are done <%= @tasks_today_done.size%> and <%= @tasks_add_count%> added. </small></blockquote>
+
+  <table class="table table-striped span8 disable transparent">
+    
+    <tbody>
+      <% @tasks_today_done.each do |task| %>
+        <tr>
+          <td width=5%>
+          <%= form_tag done_task_path(task), method: :get, remote:false do%>
+            <%= check_box_tag nil, nil, task.isDone %>
+            <%= submit_tag %>
+          <% end %>
+          </td>
+          <td><%= task.name %></td>
+          
+          <td width=10%>
+            <%= link_to edit_task_path(task), :class => 'btn btn-mini' do%>
+              <i class="icon-edit"></i>
+            <%end%>
+            <%= link_to task_path(task),
+                        :method => :delete,
+                        :class => 'btn btn-mini' do%>
+                          <i class="icon-remove"></i>
+            <%end%>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <blockquote><small>All tasks are done <%= @tasks_done.size%>. </small></blockquote>
+
+  <table class="table table-striped span8 disable transparent">
+    
+    <tbody>
+      <% @tasks_done.each do |task| %>
+        <tr>
+          <td width=5%>
+          <%= form_tag done_task_path(task), method: :get, remote:false do%>
+            <%= check_box_tag nil, nil, task.isDone %>
+            <%= submit_tag %>
+          <% end %>
+          </td>
+          <td><%= task.name %></td>
+          
+          <td width=10%>
+            <%= link_to edit_task_path(task), :class => 'btn btn-mini' do%>
+              <i class="icon-edit"></i>
+            <%end%>
+            <%= link_to task_path(task),
+                        :method => :delete,
+                        :class => 'btn btn-mini' do%>
+                          <i class="icon-remove"></i>
+            <%end%>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

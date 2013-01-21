@@ -1,0 +1,32 @@
+
+<%= render :partial => 'tasks/top_siderbar' %> 
+<div class="span8 offset1">
+
+  <table class="table table-striped">
+    <tbody>
+      <% @notes.each do |note| %>
+        <tr>
+          <td><%= link_to note.id, note_path(note) %></td>
+          <td><%= note.desc %></td>
+          <td><%= note.dir %></td>
+          <td width=15%>
+            <%= link_to edit_note_path(note), :class => 'btn btn-mini' do%>
+              <i class="icon-edit"></i>
+            <%end%>
+            <%= link_to note_path(note),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini' do%>
+                <i class="icon-remove"></i>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_note_path,
+            :class => 'btn btn-primary' %>
+</div>
+
+

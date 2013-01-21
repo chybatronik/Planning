@@ -1,0 +1,49 @@
+<%= form_for @direction, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :active, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :active, :class => 'check_box' %>
+    </div>
+  </div>
+
+ <div class="control-group">
+    <%= f.label :isLimit, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :isLimit, :class => 'check_box' %>
+    </div>
+  </div>
+
+ <div class="control-group">
+    <%= f.label :icon, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :icon, [['Делаем', 'icon-tasks'], ['Учим', 'icon-book']] %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :count_limit, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :count_limit, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :desc, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :desc, :class => 'text_field span6' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                directions_path, :class => 'btn' %>
+  </div>
+<% end %>
