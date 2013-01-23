@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :directions, :dependent => :destroy
   has_many :schedules, :dependent => :destroy
+  has_many :notes, :dependent => :destroy
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
