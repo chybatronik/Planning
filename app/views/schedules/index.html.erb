@@ -1,6 +1,8 @@
 
 
 <%= render :partial => 'tasks/top_siderbar' %>
+<%= render :partial => 'tasks/alert' %>
+
 <div class="row">
   <div class="span10 offset2">
       <blockquote><small>Today you should do <%= @schedules.size%> tasks. And <%= @schedules_today_done.size%> are done. </small></blockquote>

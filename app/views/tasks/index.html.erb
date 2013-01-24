@@ -30,7 +30,7 @@
           <% if @today_tasks_complete%>
             <td width=5%>
               <%= form_tag done_task_path(task), method: :get, remote:false do%>
-                <%= check_box_tag nil, nil, task.isDone %>
+                <%= check_box_tag nil, nil, task.is_done %>
                 <%= submit_tag %>
               <% end %>
             </td>
@@ -71,7 +71,7 @@
         <tr>
           <td width=5%>
           <%= form_tag done_task_path(task), method: :get, remote:false do%>
-            <%= check_box_tag nil, nil, task.isDone %>
+            <%= check_box_tag nil, nil, task.is_done %>
             <%= submit_tag %>
           <% end %>
           </td>
@@ -102,7 +102,7 @@
         <tr>
           <td width=5%>
           <%= form_tag done_task_path(task), method: :get, remote:false do%>
-            <%= check_box_tag nil, nil, task.isDone %>
+            <%= check_box_tag nil, nil, task.is_done %>
             <%= submit_tag %>
           <% end %>
           </td>

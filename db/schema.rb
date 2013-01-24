@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123175330) do
+ActiveRecord::Schema.define(:version => 20130124124332) do
 
   create_table "directions", :force => true do |t|
     t.string   "name"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(:version => 20130123175330) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.integer  "user_id"
-    t.boolean  "isLimit"
+    t.boolean  "is_limit"
     t.string   "icon"
     t.integer  "count_limit", :default => 3, :null => false
-    t.string   "desc"
+    t.text     "desc"
   end
 
   add_index "directions", ["active"], :name => "index_directions_on_active"
@@ -40,17 +40,17 @@ ActiveRecord::Schema.define(:version => 20130123175330) do
 
   create_table "schedules", :force => true do |t|
     t.integer  "task_id"
-    t.boolean  "isDone"
+    t.boolean  "is_done"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.integer  "direction_id"
-    t.integer  "indexOfDay"
+    t.integer  "index_of_day"
   end
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
-    t.boolean  "isDone"
+    t.boolean  "is_done"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.datetime "done_at"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20130123175330) do
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"
   add_index "tasks", ["direction_id"], :name => "index_tasks_on_direction_id"
   add_index "tasks", ["id"], :name => "index_tasks_on_id", :unique => true
-  add_index "tasks", ["isDone"], :name => "index_tasks_on_isDone"
+  add_index "tasks", ["is_done"], :name => "index_tasks_on_isDone"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

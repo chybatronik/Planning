@@ -1,5 +1,6 @@
 
 <%= render :partial => 'tasks/top_siderbar' %> 
+<%= render :partial => 'tasks/alert' %>
 
 <div class="span8 offset2">
   <table class="table table-striped">
@@ -27,7 +28,7 @@
                 <%= submit_tag %>
               <% end %>
           </td>
-          <td width=5%><%= direction.isLimit %></td>
+          <td width=5%><%= direction.is_limit %></td>
           <td>
             <%= link_to direction_tasks_path(direction) do%>
               <%= direction.name %>

@@ -4,18 +4,18 @@ class Task < ActiveRecord::Base
 	belongs_to :user
 	has_many :schedules, :dependent => :destroy
 
-	attr_accessible :isDone, :name, :done_at, :direction_id, :desc
+	attr_accessible :is_done, :name, :done_at, :direction_id, :desc
 
 	validates :name,  :presence => true
-	validates :isDone, :inclusion => { :in => [true, false] }
+	validates :is_done, :inclusion => { :in => [true, false] }
 
 	default_scope includes(:direction)
 
-	scope :not_done , where(:isDone => false).order("created_at")
+	scope :not_done , where(:is_done => false).order("created_at")
 
-	scope :done, where(:isDone => true).order("done_at desc")
+	scope :done, where(:is_done => true).order("done_at desc")
 
-	scope :today_done, where('isDone = ? and done_at > ? ', 
+	scope :today_done, where('is_done = ? and done_at > ? ', 
 					true, Date.today.to_time_in_current_zone).
 							order("done_at desc")
 

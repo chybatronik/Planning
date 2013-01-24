@@ -1,9 +1,9 @@
 class Schedule < ActiveRecord::Base
   belongs_to :task
 
-  attr_accessible :isDone, :task_id, :user_id, :indexOfDay
+  attr_accessible :is_done, :task_id, :user_id, :index_of_day
 
-  scope :today, where(:indexOfDay => 0)
+  scope :today, where(:index_of_day => 0)
 
   def self.upgrade user_id
   	self.delete_all
@@ -48,7 +48,7 @@ class Schedule < ActiveRecord::Base
   		schdl = Schedule.new
   		schdl.task_id = task.id
   		schdl.user_id = task.user_id
-  		schdl.isDone = false
+  		schdl.is_done = false
 
       dictOfIndex_count[task.direction_id] += 1
       if dictOfIndex_count[task.direction_id] > task.direction.count_limit
