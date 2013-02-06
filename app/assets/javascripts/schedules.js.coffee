@@ -14,15 +14,16 @@
 # # 	$(".alert").delay(500).fadeOut("slow", close_alert)
 
 ready = ->
- 	close_alert = (event) ->
+ 	###close_alert = (event) ->
 		$(this).remove()
-	$(".alert").delay(500).fadeOut("slow", close_alert)
+	$(".alert").delay(500).fadeOut("slow", close_alert)###
 
 	$("table form input[type = 'submit']").hide()
 
 	$('input[type=checkbox]').click ->
 		$(this).parent('form').submit()
 		console.log "OK"
+	
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

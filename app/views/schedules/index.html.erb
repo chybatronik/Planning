@@ -13,14 +13,26 @@
   <table class="table table-striped">
     <tbody>
       <% @schedules.each do |schedule| %>
-        <%unless schedule.task.isDone%>
+        <%unless schedule.task.is_done%>
           <tr>
             <td width=5%>
                 <%= form_tag done_schedule_path(schedule), method: :get, remote:false do%>
-                  <%= check_box_tag nil, nil, schedule.task.isDone %>
+                  <%= check_box_tag nil, nil, schedule.task.is_done %>
                   <%= submit_tag %>
                 <% end %>
             </td>
+            <td>
+              <%if not schedule.task.is_play %>
+                <%= link_to play_schedule_path(schedule.task), :class => 'btn btn-mini play' do%>
+                  <i class="icon-play"></i>
+                <%end%> 
+              <%else%>
+                <%= link_to stop_schedule_path(schedule.task), :class => 'btn btn-mini stop' do%>
+                  <i class="icon-stop"></i>
+                <%end%> 
+              <%end%>
+            </td>
+            <td><%= schedule.task.duration_done %></td>  
             <td>
               <a href="<%= direction_tasks_path(schedule.task.direction)%>">
                 <i class="<%= schedule.task.direction.icon %> transparent"></i>
@@ -28,7 +40,7 @@
               </a>
             </td>
             <td><%= schedule.task.name %></td>          
-            <td><%= schedule.task.created_at %></td>
+            
           </tr>
         <%end%>
       <% end %>

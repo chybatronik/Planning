@@ -7,16 +7,16 @@
     <%= render :partial => 'form_add_inline' %>
   <%end%>
 
-  <%if @cur_direction != nil and @cur_direction.desc != nil%>
+  <%if @cur_direction != nil and @cur_direction.desc != ""%>
 
     <div style="text-align:left">
       <small>
         <%= markdown(@cur_direction.desc) %>
       </small>
       <div style="text-align:right">
-      <%= link_to edit_direction_path(@cur_direction), :class => 'btn btn-mini' do%>
-        <i class="icon-edit"></i>
-      <%end%>
+        <%= link_to edit_direction_path(@cur_direction), :class => 'btn btn-mini' do%>
+          <i class="icon-edit"></i>
+        <%end%>
       </div>
       
     </div>

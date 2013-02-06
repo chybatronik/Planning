@@ -28,7 +28,19 @@
                 <%= submit_tag %>
               <% end %>
           </td>
-          <td width=5%><%= direction.is_limit %></td>
+          <td width=15%>
+            <%= form_tag limit_direction_path(direction), method: :get, remote:false do%>
+                <label class="checkbox">
+                <%= check_box_tag nil, nil, direction.is_limit %>
+                <% if direction.is_limit %>
+                  <span class="label label-success">Limit</span>
+                <%else%>
+                  <span class="label ">Unlim</span>
+                <%end%>
+              </label>
+                <%= submit_tag %>
+              <% end %>
+          </td>
           <td>
             <%= link_to direction_tasks_path(direction) do%>
               <%= direction.name %>

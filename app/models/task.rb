@@ -4,7 +4,8 @@ class Task < ActiveRecord::Base
 	belongs_to :user
 	has_many :schedules, :dependent => :destroy
 
-	attr_accessible :is_done, :name, :done_at, :direction_id, :desc
+	attr_accessible :is_done, :name, :done_at, :direction_id, :desc,
+					:is_play, :duration_done, :start_play
 
 	validates :name,  :presence => true
 	validates :is_done, :inclusion => { :in => [true, false] }

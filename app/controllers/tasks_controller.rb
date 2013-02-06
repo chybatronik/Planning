@@ -14,9 +14,9 @@ class TasksController < ApplicationController
       @tasks_add_count = current_user.directions.find(params[:direction_id]).tasks.today_add.size
       @cur_direction = current_user.directions.find(params[:direction_id])
       @today_tasks_complete = (!(@tasks_today_done.size >= @cur_direction.count_limit) or
-                            !current_user.directions.find(params[:direction_id]).isLimit)
+                            !current_user.directions.find(params[:direction_id]).is_limit)
       @today_tasks_add_complete = (!(@tasks_add_count >=@cur_direction.count_limit) or
-                            !current_user.directions.find(params[:direction_id]).isLimit)
+                            !current_user.directions.find(params[:direction_id]).is_limit)
     else
       @tasks = current_user.tasks.not_done
       @tasks_today_done = current_user.tasks.today_done
@@ -68,7 +68,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = current_user.tasks.new(params[:task])
-    @task.isDone = false
+    @task.is_done = false
 
     if params.has_key? :direction_id
       @task.direction_id = params[:direction_id].to_i
@@ -117,9 +117,9 @@ class TasksController < ApplicationController
 
   def done
     @task = current_user.tasks.find(params[:id])
-    @task.isDone = !@task.isDone
+    @task.is_done = !@task.is_done
     @task.done_at = Time.zone.now  
-    @task.save
+    @task.save!
     redirect_to  :back
   end
 end

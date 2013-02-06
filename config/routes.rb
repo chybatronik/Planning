@@ -1,11 +1,21 @@
 Planning::Application.routes.draw do
 
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  devise_for :admins
+
+  
+
   resources :notes
 
 
   resources :schedules do
     member do
       get :done
+      get :play
+      get :stop
     end
   end
 
@@ -22,6 +32,7 @@ Planning::Application.routes.draw do
     resources :tasks
     member do
       get :active
+      get :limit
     end
   end
 

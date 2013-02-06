@@ -6,11 +6,10 @@ class Schedule < ActiveRecord::Base
   scope :today, where(:index_of_day => 0)
 
   def self.upgrade user_id
-  	self.delete_all
-    
+  	self.delete_all    
     user = User.find(user_id)
     user.last_update_schedule = Date.today.to_time_in_current_zone
-    user.save
+    user.save!
 
   	p user_id
   	dict_list = []
@@ -44,19 +43,29 @@ class Schedule < ActiveRecord::Base
   		end
   	end
 
+    count_of_play = 0
+
   	rezult.each do |task|
   		schdl = Schedule.new
   		schdl.task_id = task.id
   		schdl.user_id = task.user_id
   		schdl.is_done = false
 
+      if task.is_play
+        count_of_play += 1
+        if count_of_play > 1
+          task.update_attribute(:is_play,false)
+        end
+      end
+
+
       dictOfIndex_count[task.direction_id] += 1
       if dictOfIndex_count[task.direction_id] > task.direction.count_limit
         dictOfIndex_count[task.direction_id] = 0
         dictOfIndex[task.direction_id] += 1
       end
-      schdl.indexOfDay = dictOfIndex[task.direction_id] 
-  		schdl.save
+      schdl.index_of_day = dictOfIndex[task.direction_id] 
+  		schdl.save!
   	end
   end
 

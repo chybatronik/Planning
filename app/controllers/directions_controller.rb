@@ -87,7 +87,14 @@ class DirectionsController < ApplicationController
   def active
     @dir = current_user.directions.find(params[:id])
     @dir.active = !@dir.active
-    @dir.save
+    @dir.save!
+    redirect_to  :back
+  end
+
+  def limit
+    @dir = current_user.directions.find(params[:id])
+    @dir.is_limit = !@dir.is_limit
+    @dir.save!
     redirect_to  :back
   end
 end
